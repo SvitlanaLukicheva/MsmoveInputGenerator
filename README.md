@@ -18,7 +18,7 @@ PARAM_NAME  = FORMULA
 
 The first line specifies a parameter which is bounded by a lower and a upper value.
 The second line specifies a parameter which is computed by a formula.
-Formulas are of type `X ~ Y`, where ´X´ and ´Y´ are parameter names (defined previously) or numbers and ´~´ is an operator from the list `+, -, *, /`.
+Formulas are of type `X ~ Y`, where `X` and `Y` are parameter names (defined previously) or numbers and ´~´ is an operator from the list `+, -, *, /`.
 Lower and upper bounds can also be specified as formulas, possibly using parameters (defined previously).
 
 See below an example.
