@@ -16,8 +16,8 @@ class MsmoveInputGenerator:
 
         # name of the file specifying parameters properties
         self.parameters_file_name = parameters_file_name
-        # name of the output file
-        self.output_file_name = output_file_name + "__" + datetime.now().strftime("%Y_%m_%d__%H_%M_%S") + ".out"
+        # output file
+        self.output_file = open(output_file_name + "__" + datetime.now().strftime("%Y_%m_%d__%H_%M_%S") + ".out", "x")
         # minimum number of samples to generate
         self.number_of_samples = number_of_samples
         # dictionary {param_name -> (par_value_1, par_value_2, ...)}
@@ -26,24 +26,24 @@ class MsmoveInputGenerator:
         self.number_of_steps = 0
 
 
+
     def RunGenerator(self):
         """
         Parses parameters and generates the parameter values.
         """
 
         self.ParseParameters()
-
-        output_file = open(self.output_file_name, "x")
-
+        
         print(datetime.now().strftime("%H:%M:%S") + ": Generating parameters...")
 
         parameter_values = {}
         for i in range(self.number_of_steps):
-            self.GenerateParameters(self.parameters.items(), 0, parameter_values, i, output_file)
+            self.GenerateParameters(self.parameters.items(), 0, parameter_values, i)
 
         print(datetime.now().strftime("%H:%M:%S") + ": Done.")
 
-        output_file.close()
+        self.output_file.close()
+
 
 
     def ParseParameters(self):
@@ -81,7 +81,8 @@ class MsmoveInputGenerator:
         print(datetime.now().strftime("%H:%M:%S") + ": Done.")
 
 
-    def GenerateParameters(self, parameters, current_parameter_index, current_parameter_values, current_step, output_file):
+
+    def GenerateParameters(self, parameters, current_parameter_index, current_parameter_values, current_step):
         """
         Recursive method generating all the combination of parameters and writing them in the output file.
         """
@@ -103,17 +104,18 @@ class MsmoveInputGenerator:
                         current_parameter_values[parameter[0]] = min_bound + current_step * step_interval
                         
                 for i in range(self.number_of_steps):
-                    self.GenerateParameters(parameters, current_parameter_index + 1, current_parameter_values, i, output_file)
+                    self.GenerateParameters(parameters, current_parameter_index + 1, current_parameter_values, i)
 
             elif(current_step == 0):
                 line = ""
                 for parameter_value in current_parameter_values.values():
                     line += str(parameter_value) + "\t"
 
-                output_file.write(line + "\n")
+                self.output_file.write(line + "\n")
                         
         except ValueError:
             raise Exception("Invalid parameter type for parameter " + parameter)
+
 
 
     def isFloat(self, string: str):
@@ -125,6 +127,7 @@ class MsmoveInputGenerator:
             return True
         except ValueError:
             return False
+
 
 
     def GetParameterValue(self, value: str, known_values):
@@ -140,6 +143,7 @@ class MsmoveInputGenerator:
         elif(value in known_values):
             result = known_values[value]
         return result
+
 
 
     def EvaluateParameter(self, parameter: str, known_values):
@@ -173,7 +177,3 @@ class MsmoveInputGenerator:
                 raise Exception("Invalid operation specified for parameter " + parameter)
 
         return result
-
-
-msmove_input_generator = MsmoveInputGenerator("C:\\Users\\svitl\\Desktop\\Git\\MsmoveInputGenerator\\data\\parameters.sv", "C:\\Users\\svitl\\Desktop\\Git\\MsmoveInputGenerator\\data\\fsc_introgression", 10000)
-msmove_input_generator.RunGenerator()

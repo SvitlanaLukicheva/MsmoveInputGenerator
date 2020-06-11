@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{f7f75dff-1911-4570-8579-482cae21d86c}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>MsmoveInputGenerator.py</StartupFile>
+    <StartupFile>EntryPoint.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -21,6 +21,9 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EntryPoint.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MsmoveInputGenerator.py">
       <SubType>Code</SubType>
     </Compile>
