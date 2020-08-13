@@ -12,20 +12,19 @@ msmove_input_generator.RunGenerator()
 
 The syntax of the input file is the following:
 ```
-PARAM_NAME  LOWER_BOUND UPPER_BOUND
-PARAM_NAME  = FORMULA
+NPOP1_1	VALUE
+NPOP1_2	VALUE
+NPOP2_1	VALUE
+NPOP2_2	VALUE 
+T_DIV	VALUE
+NPOP_A	VALUE
+MU	VALUE
+T_I	0
+P_I	0
 ```
 
-The first line specifies a parameter which is bounded by a lower and a upper value.
-The second line specifies a parameter which is computed by a formula.
-Formulas are of type `X ~ Y`, where `X` and `Y` are parameter names (defined previously) or numbers and ´~´ is an operator from the list `+, -, *, /`.
-Lower and upper bounds can also be specified as formulas, possibly using parameters (defined previously).
+All these parameters must be provided (but not necessarily in this order).
 
-See below an example.
+In order to generate a parameters set without introgression, the `T_I` and `P_I` parameters have to be set to 0. To add introgression, both of these parameters have to be set to 1.
 
-```
-POP_RAT	0.02282 0.068475
-T_DIV1	0.046	0.138
-T_DIV2	=	TDIV1
-T_INTR	0	TDIV1 / 4
-```
+The program estimates the minimum number of steps for each parameters in order to achieve the desired number of entries to generate and then generates `number_of_steps ^ number of parameters` entries.
