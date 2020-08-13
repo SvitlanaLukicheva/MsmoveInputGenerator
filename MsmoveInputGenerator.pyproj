@@ -27,6 +27,9 @@
     <Compile Include="MsmoveInputGenerator.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ParametersSet.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
