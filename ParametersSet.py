@@ -154,7 +154,7 @@ class ParametersSet:
         alpha_1 = (-4 * current_npop1_1 / current_t_div) * numpy.log(current_npop1_2 / current_npop1_1)
         alpha_2 = (-4 * current_npop1_1 / current_t_div) * numpy.log(current_npop2_2 / current_npop2_1)
 
-        output_line = str(n2_init) + "\t" + str(t_div) + "\t" + str(resize) + "\t" + str(theta) + "\t" + str(alpha_1) + "\t" + str(alpha_2)
+        output_line = str(n2_init) + "\t" + str(t_div) + "\t" + str(t_div) + "\t" + str(resize) + "\t" + str(theta) + "\t" + str(alpha_1) + "\t" + str(alpha_2)
 
         # introgression-related parameters
         if(self.number_of_parameters == 9):
