@@ -162,4 +162,9 @@ class ParametersSet:
             p_i = max(0.01, (1 / total_number_of_steps) * param_step_dict["P_I"])
             output_line = output_line + "\t" + str(t_i) + "\t" + str(p_i)
 
+        debug = False
+        if(debug):
+            print("Model parameters:", current_npop1_1, current_npop1_2, current_npop2_1, current_npop2_2, current_t_div, current_npop_a, current_mu)
+            print("msmove parameters", output_line)
+
         return output_line
