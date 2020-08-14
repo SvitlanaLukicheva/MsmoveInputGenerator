@@ -86,7 +86,7 @@ class MsmoveInputGenerator:
         # compute a new parameters set
         if(param_index == len(param_step_dict) and step_index == 0):
             self.generated_samples_count = self.generated_samples_count + 1
-            self.output_file.write(self.parameters.GetOutputLineForParameterSet(param_step_dict, self.number_of_steps) + "\n")
+            self.output_file.write(self.parameters.GetOutputLineForParameterSet(param_step_dict, self.number_of_steps - 1) + "\n")
             if(self.generated_samples_count % 2000 == 0):
                 print(str(self.generated_samples_count) + " out of " + str(self.total_number_of_samples_to_generate), "current parameters vector:", param_step_dict)
 
